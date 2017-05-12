@@ -1,18 +1,7 @@
-const express = require('express'),
-    session = require('express-session'),
-    bodyParser = require('body-parser'),
-    mysql = require('mysql'),
+const mysql = require('mysql'),
     jsdom = require('jsdom'),
-    { JSDOM } = jsdom,
-    app = express();
+    { JSDOM } = jsdom;
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(session({ secret: 'James Bond 007' }));
-
-app.listen(3001);
-
-console.log('Server is running on port: 3001');
 
 let connection = mysql.createConnection({
     host: 'localhost',
@@ -45,7 +34,7 @@ require('./EVDB.js');
 let queryHolder = "INSERT INTO `google_maps_markers` (`id`, `name`, `adress`, `lat`, `lng`)";
 let query = queryHolder;
 
-for (let i = 1; i <= 60; i += 1) {
+for (let i = 1; i <= 1; i += 1) {
     let oArgs = {
         app_key: "ZF8DQx6LN9zKpNPp",
         date: "Last Week",
@@ -82,11 +71,11 @@ for (let i = 1; i <= 60; i += 1) {
 
         }
 
-        connection.query(query, function (error, results, fields) {
-            if (error) {
-                console.log(error);
-            }
-        })
+        // connection.query(query, function (error, results, fields) {
+        //     if (error) {
+        //         console.log(error);
+        //     }
+        // })
 
         query = "";
     });

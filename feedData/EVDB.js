@@ -156,7 +156,7 @@ EVDB.API.call = function (sMethod, args, fnCallback) {
         elScript.type = "text/javascript";
         elScript.src = EVDB.API.URL + sMethod + '?' + args + "&json_request_id=" +
             EVDB.API.idRequest;
-
+            console.log(elScript.src);
         request({ uri: elScript.src }, function (error, response, body) {
             eval(body);
         });
