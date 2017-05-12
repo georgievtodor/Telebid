@@ -6,7 +6,7 @@
         exit();
     }
 
-    $query = "SELECT * FROM wp_wpgmza";
+    $query = "SELECT * FROM google_maps_markers";
 
     $result = $con->query($query);
     if($result !== FALSE) {
@@ -28,6 +28,8 @@
     $newNode = $xmlRoot->appendChild($node);
     $newNode->setAttribute('lat', $item['lat']);
     $newNode->setAttribute('lng', $item['lng']);
+    $newNode->setAttribute('name', $item['name']);
+    $newNode->setAttribute('adress', $item['adress']);
    }
 
 //    debug(json_encode($result));

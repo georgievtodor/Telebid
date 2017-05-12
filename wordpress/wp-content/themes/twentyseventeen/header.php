@@ -20,6 +20,12 @@
 <link rel="profile" href="http://gmpg.org/xfn/11">
 
 <?php wp_head(); ?>
+<style>
+	#map {
+		width:100%;
+		height: 500px;
+	}
+</style>
 </head>
 
 <body <?php body_class(); ?>>

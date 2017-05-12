@@ -1,4 +1,26 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
+<?php
+/**
+ * Front to the WordPress application. This file doesn't do anything, but loads
+ * wp-blog-header.php which does and tells WordPress to load the theme.
+ *
+ * @package WordPress
+ */
+
+/**
+ * Tells WordPress to load the WordPress theme and output it.
+ *
+ * @var bool
+ */
+define('WP_USE_THEMES', true);
+
+/** Loads the WordPress Environment and Template */
+require( dirname( __FILE__ ) . '/wp-blog-header.php' );
+
+
+?>
+
+
+<!--<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
     <html lang="en">
             <head> 
             <meta http-equiv="content-type" content="text/html; charset=utf-8"> 
@@ -15,67 +37,44 @@
                 <div id="map"></div>
             </body> 
             <footer>
-            <!--<script type="text/javascript" src="http://api.eventful.com/js/api">
-
-            </script>
-
-            <script type="text/javascript">
-
-            function show_alert()
-
-            {
-
-            var oArgs = {
-
-                        app_key:"ZF8DQx6LN9zKpNPp",
-
-                        date: "Last Week",
-
-                        page_size: 15 ,
-
-            };
-
-            EVDB.API.call("/events/search", oArgs, function(oData) {
-                console.log(oData.events.event);
-                // Note: this relies on the custom toString() methods below
-
-                });
-
-            }
-
-            show_alert();
-
-            </script>-->
-
-
-
-
-
-
-
-
-
-
-
-
 
                 <script>
+
                     function initMap() {
+                        var infoWindow = new google.maps.InfoWindow;
                         downloadUrl("http://telebid.pro/test/wordpress/data.php", function(data) {
                             console.log(data);
                             console.log(data.responseXML)
                             var xml = data.responseXML;
                             var markers = xml.documentElement.getElementsByTagName('marker');
                             Array.prototype.forEach.call(markers, function(elem) {
-                               var point = new google.maps.LatLng(
+                                var name = elem.getAttribute('name');
+                                var adress = elem.getAttribute('adress');
+                                var point = new google.maps.LatLng(
                                    parseFloat(elem.getAttribute('lat')),
                                    parseFloat(elem.getAttribute('lng'))
                                );
 
-                               var marker = new google.maps.Marker({
+                               var infoWinContent = document.createElement('div');
+                               var strong = document.createElement('strong');
+                               strong.textContent = name;
+                               infoWinContent.appendChild(strong);
+                               infoWinContent.appendChild(document.createElement('br'));
+
+                               var text = document.createElement('text');
+                               text.textContent = adress;
+                               infoWinContent.appendChild(text);
+
+
+                                var marker = new google.maps.Marker({
                                    map: map,
                                    position: point
                                });
+                                marker.addListener('click', function() {
+                                    infoWindow.setContent(infoWinContent);
+                                    infoWindow.open(map, marker);
+                                });
+
                             });
                         })
 
@@ -85,13 +84,7 @@
                             center: centerCoords,
                             zoom: 3
                         });
-                        console.log(map)
-                        var infoWindow = new google.maps.InfoWindow;
 
-                        var marker = new google.maps.Marker({
-                            position: centerCoords,
-                            map: map
-                        });
                     }
 
                     function downloadUrl(url, callback) {
@@ -121,4 +114,4 @@
                 </script>
 
             </footer>
-    </html> 
+    </html> -->
